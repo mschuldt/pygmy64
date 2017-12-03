@@ -125,6 +125,13 @@ CODE CONSTANT
     code (word(), " dpush({})".format( dpop() ))
   END-CODE
 
+CODE VALUE
+    # usage:   <init value> VALUE <name>
+    w = word()
+    values[w] = dpop()
+    code (w, " dpush(values['{}'])".format(w))
+  END-CODE
+
 ( s -)
 CODE ABORT  abort (dpop()) END-CODE
 

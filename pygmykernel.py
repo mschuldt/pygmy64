@@ -35,6 +35,7 @@ class ByeException(Exception): pass
 class StackUnderflowException(Exception): pass
 
 entries = {} # a dictionary for variable entries
+values = {} # a mapping for values
 
 _compiler = {} # immediate vocabulary dictionary
 _forth = {}    # non-immediate vocabulary dictionary
