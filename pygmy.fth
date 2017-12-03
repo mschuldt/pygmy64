@@ -315,6 +315,13 @@ CODE ,
     current_entry.data.append(dpop())
 END-CODE
 
+CODE create
+    w = word()
+    e = entries[w] = Entry(w)
+    set_current_entry(e)
+    code (w, " dpush(entries['{}'].ref())".format(w))
+END-CODE
+
 ( *********  Start Interactive Loop ******** )
 
 " Welcome to Pygmy Forth" .  CR
