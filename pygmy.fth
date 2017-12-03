@@ -114,8 +114,9 @@ CODE VARIABLE
     # usage:   VARIABLE <varname>
     #  e.g.,   VARIABLE STATUS
     w = word()
-    variables[w] = 0
-    code (w, " dpush('%s')" % w)
+    e = entries[w] = Entry(w)
+    set_current_entry(e)
+    code (w, " dpush(entries['{}'].ref())".format(w))
   END-CODE
 
 ( s -)
@@ -149,15 +150,13 @@ CODE QUIT
 
 CODE @
    #  ( var - value)
-   # a variable is a string key into the variables dictionary
-   dpush(variables[dpop()])
+   dpush(dpop().ref())
   END-CODE
 
 CODE !
    #  ( value var -)
-   # a variable is a string key into the variables dictionary
-   val,varname = dpop(2)
-   variables[varname] = val
+   val,var = dpop(2)
+   var.set(val)
   END-CODE
 
 : ?   @ .  ;

@@ -34,7 +34,7 @@ class AbortException(Exception): pass
 class ByeException(Exception): pass
 class StackUnderflowException(Exception): pass
 
-variables = {} # a dictionary for VARIABLEs
+entries = {} # a dictionary for variable entries
 
 _compiler = {} # immediate vocabulary dictionary
 _forth = {}    # non-immediate vocabulary dictionary
@@ -47,6 +47,37 @@ _rstack = []    # return stack (mainly a third hand?)
 
 _cob = ""      # Compiler Output Buffer (where new definitions are assembled)
 _tab = 1       # tab (indentation) level for assembling new definitions
+
+current_entry = None
+
+def set_current_entry(entry):
+    global current_entry
+    current_entry = entry
+
+class Entry:
+    def __init__(self, name):
+        self.name = name
+        self.data = [0]
+    def __repr__(self):
+        return self.name
+    def ref(self):
+        return EntryRef(self)
+
+class EntryRef:
+    def __init__(self, entry, index=0):
+        self.entry = entry
+        self.index = index
+    def __add__(self, other):
+        self.index += other
+        return self
+    def __repr__(self):
+        if self.index:
+            return self.entry.name + "+" + str( self.index )
+        return self.entry.name
+    def ref(self):
+        return self.entry.data[self.index]
+    def set(self, val):
+        self.entry.data[self.index] = val
 
 def word (delim=" "):
     '''Split off the first word of the string in _tib based on the
