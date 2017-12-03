@@ -115,10 +115,11 @@ def abort (s):
     print (s[:100])  # limit amount printed
     raise AbortException
     
+_words={}
 
-def code (name, s):
+def code (name, s, colon=False):
     '''Define a Forth word with Python code.'''
-
+    name = name.upper()
     if not (s.startswith (" ") or s.startswith("\n ")):
         abort ('The body of code word %s must be indented: %s' % (name,s))
 
@@ -137,7 +138,7 @@ def code (name, s):
         print ("WARNING: redefining Python name %s" % pname)
     if name in _context:
         print ("WARNING: redefining Forth word %s" % name)
-    _context[name.upper()] = pname
+    _context[name] = pname
 
     try:
         exec ("def %s():\n%s" % (pname, s), globals(),globals())
@@ -147,6 +148,7 @@ def code (name, s):
     except SyntaxError as e:
         #traceback.print_tb(e.__traceback__, file=sys.stdout)
         abort ("Python syntax error in CODE word %s: %s" % (name,e))
+    _words[name] = [":" if colon else "CODE", s]
         
 code ("CODE", " name = word(); s = word('END-CODE'); code (name, s)")
 
@@ -196,7 +198,7 @@ def interpret(s):
     _tib = s
     while _tib:
         # get the next word into w (and word shortens the remaining _tib)
-        w = word ().upper()
+        w = word().upper()
         if not w:
             continue   # maybe we got an empty string
 
@@ -256,7 +258,7 @@ def doCol():
             # We are done, so compile the code in _cob
             #print ("About to compile _cob buffer:")
             #print (_cob)
-            code (name, _cob)
+            code (name, _cob, True)
             # then bail out
             return
         pname = _compiler.get (w, None)

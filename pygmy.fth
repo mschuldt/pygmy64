@@ -290,7 +290,15 @@ CODE <=  a,b = dpop(2); dpush(a <= b)  END-CODE
 
 : 0= ( n - f)  0 = ;
 
-
+ CODE SEE
+   w = word().upper()
+   d = _words.get(w)
+   if d:
+      print(d[0], w)
+      print(d[1])
+   else:
+     print(w+"?")
+ END-CODE
 ( *********  Start Interactive Loop ******** )
 
 " Welcome to Pygmy Forth" .  CR
