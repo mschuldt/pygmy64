@@ -120,6 +120,11 @@ CODE VARIABLE
     code (w, " dpush(entries['{}'].ref())".format(w))
   END-CODE
 
+CODE CONSTANT
+    # usage:   <value> VARIABLE <name>
+    code (word(), " dpush({})".format( dpop() ))
+  END-CODE
+
 ( s -)
 CODE ABORT  abort (dpop()) END-CODE
 
