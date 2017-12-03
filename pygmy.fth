@@ -30,6 +30,7 @@ CODE "    dpush(str(word('"')))  END-CODE
 
 CODE +    a,b = dpop(2); dpush(a+b)  END-CODE
 CODE 1+     a = dpop();  dpush(a+1)  END-CODE
+CODE 1-     a = dpop();  dpush(a-1)  END-CODE
 CODE -    a,b = dpop(2); dpush(a-b)  END-CODE
 CODE *    a,b = dpop(2); dpush(a*b)  END-CODE
 CODE /    a,b = dpop(2); dpush(a/b)  END-CODE
