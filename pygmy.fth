@@ -298,7 +298,11 @@ CODE <=  a,b = dpop(2); dpush(a <= b)  END-CODE
       print(d[1])
    else:
      print(w+"?")
- END-CODE
+END-CODE
+
+CODE depth
+    dpush(len(_stack))
+END-CODE
 ( *********  Start Interactive Loop ******** )
 
 " Welcome to Pygmy Forth" .  CR
