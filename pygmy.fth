@@ -309,6 +309,11 @@ END-CODE
 CODE allot
     current_entry.data.extend([0]*dpop())
 END-CODE
+
+CODE ,
+    current_entry.data.append(dpop())
+END-CODE
+
 ( *********  Start Interactive Loop ******** )
 
 " Welcome to Pygmy Forth" .  CR
