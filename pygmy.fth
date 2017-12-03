@@ -42,7 +42,10 @@ CODE DROP  dpop()                      END-CODE
 CODE DUP   dpush(tos())                END-CODE
 CODE SWAP  a,b = dpop(2); dpush(b,a)   END-CODE
 CODE OVER  a,b = dpop(2); dpush(a,b,a) END-CODE
-CODE .S    dotList(_stack)             END-CODE
+CODE .S
+    print('<{}>'.format(len(_stack)), end=" ")
+    dotList(_stack)
+END-CODE
 CODE .RS   dotList(_rstack)            END-CODE
 CODE R@    dpush(_rstack[-1])          END-CODE
 CODE PUSH  rpush(dpop())               END-CODE
