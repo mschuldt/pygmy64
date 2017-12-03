@@ -107,8 +107,8 @@ def pythonName (s):
     if not s.isalnum():
         # Oops, something is missing from _pyNameTable
         abort ("invalid character in Forth word name %s, check _pyNameTable in pygmy.py" % s)
-    return s
 
+    return s.upper()
 
 def abort (s):
     #print (s)
@@ -137,7 +137,7 @@ def code (name, s):
         print ("WARNING: redefining Python name %s" % pname)
     if name in _context:
         print ("WARNING: redefining Forth word %s" % name)
-    _context[name] = pname
+    _context[name.upper()] = pname
 
     try:
         exec ("def %s():\n%s" % (pname, s), globals(),globals())
@@ -196,7 +196,7 @@ def interpret(s):
     _tib = s
     while _tib:
         # get the next word into w (and word shortens the remaining _tib)
-        w = word ()
+        w = word ().upper()
         if not w:
             continue   # maybe we got an empty string
 
@@ -251,7 +251,7 @@ def doCol():
     #print ("About to define ", name)
 
     while True:
-        w = word()
+        w = word().upper()
         if w == ";":
             # We are done, so compile the code in _cob
             #print ("About to compile _cob buffer:")
