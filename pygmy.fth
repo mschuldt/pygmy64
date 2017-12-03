@@ -132,6 +132,14 @@ CODE VALUE
     code (w, " dpush(values['{}'])".format(w))
   END-CODE
 
+code TO
+    w = word()
+    if w in values:
+        values[w] = dpop()
+    else:
+        print(w+"?")
+ END-CODE
+
 ( s -)
 CODE ABORT  abort (dpop()) END-CODE
 
