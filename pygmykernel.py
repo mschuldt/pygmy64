@@ -462,7 +462,10 @@ def dotList(lst,ending=""):
 # define comment     
 code ("(", " word(')')")
 
-
+def do_add(a,b):
+    if isinstance(b, EntryRef):
+        a,b = b,a
+    return a + b
       
 if __name__ == '__main__':
 
