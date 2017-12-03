@@ -55,9 +55,9 @@ def set_current_entry(entry):
     current_entry = entry
 
 class Entry:
-    def __init__(self, name):
+    def __init__(self, name, init=None):
         self.name = name
-        self.data = [0]
+        self.data = [init] if init is not None else []
     def __repr__(self):
         return self.name
     def ref(self):

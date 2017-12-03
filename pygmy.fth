@@ -115,7 +115,7 @@ CODE VARIABLE
     # usage:   VARIABLE <varname>
     #  e.g.,   VARIABLE STATUS
     w = word()
-    e = entries[w] = Entry(w)
+    e = entries[w] = Entry(w, 0)
     set_current_entry(e)
     code (w, " dpush(entries['{}'].ref())".format(w))
   END-CODE
