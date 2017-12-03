@@ -342,6 +342,16 @@ CODE create
     code (w, " dpush(entries['{}'].ref())".format(w))
 END-CODE
 
+CODE disassemble
+    import dis
+    w = word()
+    name = _forth.get(w.upper(), None)
+    if name:
+        dis.dis(eval(name))
+    else:
+        print(w+"?")
+END-CODE
+
 ( *********  Start Interactive Loop ******** )
 
 " Welcome to Pygmy Forth" .  CR
