@@ -356,6 +356,10 @@ CODE '
     dpush(ExecToken(eval(word().upper())))
 END-CODE
 
+CODE execute
+    dpop()()
+END-CODE
+
 ( *********  Start Interactive Loop ******** )
 
 " Welcome to Pygmy Forth" .  CR
