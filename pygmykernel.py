@@ -56,8 +56,8 @@ def set_current_entry(entry):
     current_entry = entry
 
 class ExecToken():
-    def __init__(self, fn):
-        self.fn = fn
+    def __init__(self, word):
+        self.fn = eval(_forth.get(word, None))
     def __call__(self):
         self.fn()
     def __repr__(self):

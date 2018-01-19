@@ -353,7 +353,7 @@ CODE disassemble
 END-CODE
 
 CODE '
-    dpush(ExecToken(eval(word().upper())))
+    dpush(ExecToken(word().upper()))
 END-CODE
 
 CODE execute
