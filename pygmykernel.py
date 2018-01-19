@@ -55,6 +55,14 @@ def set_current_entry(entry):
     global current_entry
     current_entry = entry
 
+class ExecToken():
+    def __init__(self, fn):
+        self.fn = fn
+    def __call__(self):
+        self.fn()
+    def __repr__(self):
+        return "'"+self.fn.__name__
+
 class Entry:
     def __init__(self, name, init=None):
         self.name = name

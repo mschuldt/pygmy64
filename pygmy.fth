@@ -73,7 +73,7 @@ CODE EMIT
     else:
         print(chr(x), end='')
   END-CODE
- 
+
 ( " Printing loaded" . CR )
 
 
@@ -162,7 +162,7 @@ CODE QUIT
         except Exception as e:
             print (e)
             traceback.print_stack()
-            
+
  END-CODE
 
 ( " Compiling and Interpreting loaded" . CR )
@@ -350,6 +350,10 @@ CODE disassemble
         dis.dis(eval(name))
     else:
         print(w+"?")
+END-CODE
+
+CODE '
+    dpush(ExecToken(eval(word().upper())))
 END-CODE
 
 ( *********  Start Interactive Loop ******** )
