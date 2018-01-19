@@ -55,6 +55,8 @@ CODE POP   dpush(rpop())               END-CODE
 CODE 2DUP   a,b=dpop(2); dpush(a,b); dpush(a,b)  END-CODE
 CODE 2DROP  dpop(2)                              END-CODE
 
+CODE ROT   a,b,c = dpop(3); dpush(b,c,a)  END-CODE
+
 ( " Stack loaded" . CR )
 
 
